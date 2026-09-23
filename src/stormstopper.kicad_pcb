@@ -1,0 +1,47 @@
+(kicad_pcb (version 20211014) (generator pcbnew)
+
+  (general
+    (thickness 1.6)
+  )
+
+  (page A3)
+  (layers
+    (0 F.Cu signal)
+    (1 In1.Cu power)
+    (2 In2.Cu ground)
+    (31 B.Cu signal)
+    (32 B.Adhes user)
+    (33 F.Adhes user)
+    (34 B.Paste user)
+    (35 F.Paste user)
+    (36 B.SilkS user)
+    (37 F.SilkS user)
+    (38 B.Mask user)
+    (39 F.Mask user)
+    (40 Edge.Cuts user)
+  )
+
+  ;; 8.5-Inch Canister Baseplate Edge Cuts (Radius = 102.95mm for 205.9mm Clearance Board)
+  (gr_circle (center 0 0) (end 102.95 0) (layer Edge.Cuts) (width 0.15))
+
+  ;; High-Voltage Ionization Power Delivery Zones
+  (zone (net 0) (layer In1.Cu) (tstamp 5f67a12b)
+    (hatch edge 0.508)
+    (connect_pads (clearance 0.508))
+    (min_thickness 0.254)
+    (filled_polygon
+      (pts
+        (xy -50 -50) (xy 50 -50) (xy 50 50) (xy -50 50)
+      )
+    )
+  )
+
+  ;; 100Gbps Differential Pair Impedance Constraints (100 Ohm Target)
+  (segment (start -10.25 15.0) (end -2.50 15.0) (width 0.18) (layer F.Cu) (net 5))
+  (segment (start -10.25 15.4) (end -2.50 15.4) (width 0.18) (layer F.Cu) (net 6))
+
+  ;; High-Velocity Thermal Via Arrays for Structural Dissipation
+  (via (at -15.0 0.0) (size 0.8) (drill 0.4) (layers F.Cu B.Cu) (net 0))
+  (via (at -13.5 0.0) (size 0.8) (drill 0.4) (layers F.Cu B.Cu) (net 0))
+  (via (at -12.0 0.0) (size 0.8) (drill 0.4) (layers F.Cu B.Cu) (net 0))
+)

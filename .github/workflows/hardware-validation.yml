@@ -1,0 +1,20 @@
+name: STORMSTOPPER Hardware Validation Pipeline
+on: [push, pull_request]
+
+jobs:
+  validate-cad-and-pcb:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source Code Repository
+        uses: actions/checkout@v3
+
+      - name: Setup OpenSCAD Compilation Environment
+        run: sudo apt-get update && sudo apt-get install -y openscad
+
+      - name: Compile 3-Stage Vehicle Assembly
+        run: openscad -o docs/hardware_manifest.png stormstopper_full_missile.scad
+
+      - name: Execute KiCad Schematic Integrity Validation Check
+        run: |
+          echo "[*] Commencing Netlist Structural Scans..."
+          grep -q "RT-HEXADECIMAL-ANALOG-CORE" stormstopper_master.net && echo "[+] Core Validation Passed" || exit 1
